@@ -121,9 +121,19 @@ class CountOutputWalker extends SqlWalker
         }
 
         // Build the counter query
+        /*
         return sprintf('SELECT %s AS dctrn_count FROM (SELECT DISTINCT %s FROM (%s) dctrn_result) dctrn_table',
             $this->platform->getCountExpression('*'),
             implode(', ', $sqlIdentifier),
+            $sql
+        );
+         *
+         */
+
+        // Build the counter query
+        return sprintf('SELECT %s AS dctrn_count FROM (SELECT DISTINCT %s FROM (%s) dctrn_result) dctrn_table',
+            $this->platform->getCountExpression('*'),
+            '*',
             $sql
         );
     }
